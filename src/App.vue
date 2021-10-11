@@ -1,98 +1,124 @@
 <template>
-  <h1 class="text-4xl mb-6 mt-2">Easy Chess Analysis</h1>
+  <div class="min-h-screen flex flex-col dark:bg-gray-800 dark:text-white">
+    <h1 class="text-4xl mb-6 pt-6">
+      Quick Chess Analysis <button @click="toggleTheme">{{ themeText }}</button>
+    </h1>
 
-  <div class="container mx-auto">
-    <form
-      @submit.prevent="buttonData"
-      class="flex flex-col mx-auto max-w-md mb-6"
-    >
-      <label for="formatSelect" class="text-xl">Formats to include:</label>
-      <p><b>Tip:</b> <kbd>Ctrl</kbd> + Click or drag to select multiples</p>
-      <select
-        v-model="format"
-        multiple
-        id="formatSelect"
-        class="
-          border-4
-          p-2
-          rounded
-          border-yellow-300
-          text-yellow-800
-          overflow-hidden
-        "
+    <div class="container mx-auto flex-grow">
+      <form
+        @submit.prevent="buttonData"
+        class="flex flex-col mx-auto max-w-md mb-6"
       >
-        <option value="rapid">rapid</option>
-        <option value="bullet">bullet</option>
-        <option value="blitz" class="selected:bg-red-300">blitz</option>
-      </select>
-      <label for="bucketSize" class="text-xl">Round Ratings to nearest:</label>
-      <input
-        type="number"
-        v-model="bucketSize"
-        min="1"
-        id="bucketSize"
-        class="border-4 p-2 rounded border-red-300 text-red-800"
-        title="Ratings are rounded to the nearest value, up or down. This way a 1249 will count as a 1250 instead of a 1200 for example. For best results keep this below 200"
-        required
-      />
-      <label for="monthsBack" class="text-xl"
-        >Number of months to review:</label
-      >
-      <input
-        type="number"
-        v-model="userMonths"
-        step="1"
-        min="1"
-        id="monthsBack"
-        class="border-4 p-2 rounded border-green-300 text-green-800"
-        title="Number of months to include in report, including current month to date (Enter 1 for current month to date stats)"
-        required
-      />
-      <label for="userName" class="text-xl">Your Chess.com Username</label>
-      <input
-        class="border-4 p-2 rounded border-purple-300 text-purple-800"
-        type="text"
-        v-model="user"
-        id="userName"
-        required
-      />
-      <br />
-      <button
-        class="
-          border-4
-          p-2
-          rounded
-          border-blue-300
-          text-blue-800
-          hover:text-white hover:bg-blue-800
-        "
-        @click="buttonData()"
-      >
-        {{ loading ? "Loading..." : btnText }}
-      </button>
-    </form>
-    <p v-if="totalgames">Games analyzed: {{ totalgames - droppedgames }}</p>
+        <label for="formatSelect" class="text-xl">Formats to include:</label>
+        <p><b>Tip:</b> <kbd>Ctrl</kbd> + Click or drag to select multiples</p>
+        <select
+          v-model="format"
+          multiple
+          id="formatSelect"
+          class="
+            border-4
+            p-2
+            rounded
+            border-yellow-300
+            text-yellow-800
+            overflow-hidden
+          "
+        >
+          <option value="rapid">rapid</option>
+          <option value="bullet">bullet</option>
+          <option value="blitz" class="selected:bg-red-300">blitz</option>
+        </select>
+        <label for="bucketSize" class="text-xl"
+          >Round Ratings to nearest:</label
+        >
+        <input
+          type="number"
+          v-model="bucketSize"
+          min="1"
+          id="bucketSize"
+          class="border-4 p-2 rounded border-red-300 text-red-800"
+          title="Ratings are rounded to the nearest value, up or down. This way a 1249 will count as a 1250 instead of a 1200 for example. For best results keep this below 200"
+          required
+        />
+        <label for="monthsBack" class="text-xl"
+          >Number of months to review:</label
+        >
+        <input
+          type="number"
+          v-model="userMonths"
+          step="1"
+          min="1"
+          id="monthsBack"
+          class="border-4 p-2 rounded border-green-300 text-green-800"
+          title="Number of months to include in report, including current month to date (Enter 1 for current month to date stats)"
+          required
+        />
+        <label for="userName" class="text-xl">Your Chess.com Username</label>
+        <input
+          class="border-4 p-2 rounded border-purple-300 text-purple-800"
+          type="text"
+          v-model="user"
+          id="userName"
+          required
+        />
+        <br />
+        <button
+          class="
+            border-4
+            p-2
+            rounded
+            border-blue-300
+            text-blue-800
+            hover:text-white hover:bg-blue-800
+          "
+          @click="buttonData()"
+        >
+          {{ loading ? "Loading..." : btnText }}
+        </button>
+      </form>
+      <p v-if="totalgames">Games analyzed: {{ totalgames - droppedgames }}</p>
 
-    <!-- Wins by bucket - Both Colors -->
-    <div v-if="Chart.getChart('netWins')">
-      <h2 class="text-3xl mt-6">Wins, Losses, & Draws by color/rating</h2>
-      <p>
-        <b>Tip: </b>You can show/hide data by clicking the labels in the legend
-      </p>
-      <canvas id="bothColors"></canvas>
+      <!-- Wins by bucket - Both Colors -->
+      <div v-if="Chart.getChart('netWins')">
+        <h2 class="text-3xl mt-6">Wins, Losses, & Draws by color/rating</h2>
+        <p>
+          <b>Tip: </b>You can show/hide data by clicking the labels in the
+          legend
+        </p>
+        <canvas id="bothColors"></canvas>
 
-      <h2 class="text-3xl mt-6">Net Wins by color/rating</h2>
-      <canvas id="netWins"></canvas>
+        <h2 class="text-3xl mt-6">Net Wins by color/rating</h2>
+        <canvas id="netWins"></canvas>
+      </div>
     </div>
+    <footer class="bg-purple-100 mt-6 p-6 bottom-0 dark:bg-purple-900">
+      Built by TerabyteTiger |
+      <a
+        href="https://twitter.com/terabytetiger"
+        class="border-b-4 border-blue-500 border-dashed pb-1"
+        >Twitter</a
+      >
+      |
+      <a
+        href="https://chess.terabytetiger.com"
+        class="border-b-4 border-green-500 border-dashed pb-1"
+        >Chess</a
+      >
+      |
+      <a
+        href="https://terabytetiger.com"
+        class="border-b-4 border-pink-500 border-dashed pb-1"
+        >Development</a
+      >
+      |
+      <a
+        href="https://github.com/TerabyteTiger/chessAnalyzer"
+        class="border-b-4 border-indigo-500 border-dashed pb-1"
+        >Contribute</a
+      >
+      <br />
+    </footer>
   </div>
-  <footer class="bg-purple-100 mt-6 p-6">
-    Built by TerabyteTiger |
-    <a href="https://twitter.com/terabytetiger">Twitter</a> |
-    <a href="https://chess.terabytetiger.com">Chess</a> |
-    <a href="https://terabytetiger.com">Development</a> |
-    <a href="https://github.com/TerabyteTiger/chessAnalyzer">Contribute</a>
-    <br />
-  </footer>
 </template>
 
 <script setup>
@@ -116,6 +142,20 @@ let url = computed(() => {
 let resp = ref();
 let loading = ref(false);
 let btnText = ref("Get Games");
+let themeText = ref("🌞");
+let theme = ref("light");
+
+const toggleTheme = () => {
+  if (theme.value === "light") {
+    themeText.value = "🌙";
+    theme.value = "dark";
+    document.getElementById("app").className = "dark";
+  } else {
+    themeText.value = "🌞";
+    theme.value = "light";
+    document.getElementById("app").className = "light";
+  }
+};
 
 let userMonths = ref(12);
 let monthsToAnalyze = 12;
@@ -169,8 +209,8 @@ const getData = () => {
       processData();
     })
     .then(() => {
-      monthsToAnalyze--;
       if (monthsToAnalyze > 0) {
+        monthsToAnalyze--;
         now.value = new Date(now.value.getFullYear(), now.value.getMonth() - 1);
         getData();
       } else {
@@ -374,6 +414,7 @@ const generateWinsBoth = () => {
     labels: [...labels],
     datasets: [...datasets],
   };
+
   if (Chart.getChart("bothColors")) {
     winsChart.data = data;
     winsChart.update();
@@ -384,13 +425,14 @@ const generateWinsBoth = () => {
       options: {
         barValueSpacing: 5,
         scales: {
-          yAxes: [
-            {
-              ticks: {
-                min: 0,
+          x: {
+            display: true,
+            grid: {
+              color: function () {
+                return theme.value === "light" ? "#e5e5e5" : "#f3f3f3";
               },
             },
-          ],
+          },
         },
       },
     });
