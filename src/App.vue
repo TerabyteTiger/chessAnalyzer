@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-4xl mb-6">Easy Chess Analysis</h1>
+  <h1 class="text-4xl mb-6 mt-2">Easy Chess Analysis</h1>
 
   <div class="container mx-auto">
     <form
@@ -544,7 +544,5 @@ const generateNetWins = () => {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
