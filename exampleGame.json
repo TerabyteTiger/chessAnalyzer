@@ -1,0 +1,27 @@
+{
+  "url": "https://www.chess.com/game/live/26911240983",
+  "pgn": "[Event \"Live Chess\"]\n[Site \"Chess.com\"]\n[Date \"2021.10.02\"]\n[Round \"-\"]\n[White \"TerabyteTiger\"]\n[Black \"sherblekh\"]\n[Result \"0-1\"]\n[CurrentPosition \"7Q/2p2k1p/p4np1/np6/3P4/2N5/PPP2PPP/R1B1q1K1 w - -\"]\n[Timezone \"UTC\"]\n[ECO \"C47\"]\n[ECOUrl \"https://www.chess.com/openings/Four-Knights-Game-Halloween-Gambit-4...Nxe5-5.d4-Nc6\"]\n[UTCDate \"2021.10.02\"]\n[UTCTime \"10:57:00\"]\n[WhiteElo \"1358\"]\n[BlackElo \"1493\"]\n[TimeControl \"60\"]\n[Termination \"sherblekh won by checkmate\"]\n[StartTime \"10:57:00\"]\n[EndDate \"2021.10.02\"]\n[EndTime \"10:58:13\"]\n[Link \"https://www.chess.com/game/live/26911240983\"]\n\n1. e4 {[%clk 0:01:00]} 1... e5 {[%clk 0:00:59.9]} 2. Nf3 {[%clk 0:00:58.7]} 2... Nc6 {[%clk 0:00:59.6]} 3. Nc3 {[%clk 0:00:57.4]} 3... Nf6 {[%clk 0:00:58.7]} 4. Nxe5 {[%clk 0:00:56.6]} 4... Nxe5 {[%clk 0:00:57]} 5. d4 {[%clk 0:00:56.5]} 5... Nc6 {[%clk 0:00:55.9]} 6. e5 {[%clk 0:00:55.3]} 6... Ng8 {[%clk 0:00:52.7]} 7. Bb5 {[%clk 0:00:54.4]} 7... a6 {[%clk 0:00:50]} 8. Ba4 {[%clk 0:00:52.3]} 8... b5 {[%clk 0:00:47.5]} 9. Bb3 {[%clk 0:00:51.3]} 9... d6 {[%clk 0:00:46.9]} 10. O-O {[%clk 0:00:48.9]} 10... dxe5 {[%clk 0:00:44.9]} 11. Re1 {[%clk 0:00:48.2]} 11... Na5 {[%clk 0:00:37.7]} 12. Rxe5+ {[%clk 0:00:44.3]} 12... Be6 {[%clk 0:00:37]} 13. Bxe6 {[%clk 0:00:41.7]} 13... fxe6 {[%clk 0:00:35.3]} 14. Rxe6+ {[%clk 0:00:38.7]} 14... Be7 {[%clk 0:00:34.8]} 15. Qh5+ {[%clk 0:00:37.6]} 15... g6 {[%clk 0:00:33.2]} 16. Qf3 {[%clk 0:00:35.5]} 16... Nf6 {[%clk 0:00:30.2]} 17. Rxe7+ {[%clk 0:00:34.6]} 17... Qxe7 {[%clk 0:00:29.2]} 18. Qxa8+ {[%clk 0:00:34.2]} 18... Kf7 {[%clk 0:00:27.2]} 19. Qxh8 {[%clk 0:00:33.1]} 19... Qe1# {[%clk 0:00:23.7]} 0-1\n",
+  "time_control": "60",
+  "end_time": 1633172293,
+  "rated": true,
+  "tcn": "mC0Kgv5Qbs!TvKQKlBKQCKT!fHWOHyXHyrZRegRKfeQGeK6SrS1SKS90dN2UNv!TS070v4814?0e",
+  "uuid": "79858c33-236f-11ec-b743-09ff3c010001",
+  "initial_setup": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+  "fen": "7Q/2p2k1p/p4np1/np6/3P4/2N5/PPP2PPP/R1B1q1K1 w - -",
+  "time_class": "bullet",
+  "rules": "chess",
+  "white": {
+    "rating": 1358,
+    "result": "checkmated",
+    "@id": "https://api.chess.com/pub/player/terabytetiger",
+    "username": "TerabyteTiger",
+    "uuid": "26f8002a-c998-11df-8045-000000000000"
+  },
+  "black": {
+    "rating": 1493,
+    "result": "win",
+    "@id": "https://api.chess.com/pub/player/sherblekh",
+    "username": "sherblekh",
+    "uuid": "caca0572-6a8a-11e3-8062-000000000000"
+  }
+}

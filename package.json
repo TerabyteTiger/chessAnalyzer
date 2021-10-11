@@ -1,0 +1,22 @@
+{
+  "name": "chesscompiler",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --port 8080",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.3.7",
+    "axios": "^0.22.0",
+    "chart.js": "^3.5.1",
+    "postcss": "^8.3.9",
+    "tailwindcss": "^2.2.16",
+    "vue": "^3.2.16",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "vite": "^2.6.4"
+  }
+}
