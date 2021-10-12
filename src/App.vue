@@ -75,6 +75,7 @@
             hover:text-white hover:bg-blue-800
             dark:bg-blue-100 dark:hover:bg-blue-800
           "
+          :disabled="loading"
         >
           {{ loading ? "Loading..." : btnText }}
         </button>
