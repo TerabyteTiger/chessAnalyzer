@@ -153,9 +153,13 @@ let url = computed(() => {
 let resp = ref();
 let loading = ref(false);
 let btnText = ref("Get Games");
-let themeText = ref("🌞");
-let theme = ref("light");
-
+let defaultTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+  ? "dark"
+  : "light";
+let theme = ref(defaultTheme);
+let themeText = ref(defaultTheme === "light" ? "🌞" : "🌙");
+// set default theme lol
+document.getElementById("app").className = theme.value;
 const toggleTheme = () => {
   if (theme.value === "light") {
     themeText.value = "🌙";
