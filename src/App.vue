@@ -39,6 +39,7 @@
           class="border-4 p-2 rounded border-red-300 text-red-800"
           title="Ratings are rounded to the nearest value, up or down. This way a 1249 will count as a 1250 instead of a 1200 for example. For best results keep this below 200"
           required
+          @focus="$event.target.select()"
         />
         <label for="monthsBack" class="text-xl"
           >Number of months to review:</label
@@ -51,6 +52,7 @@
           id="monthsBack"
           class="border-4 p-2 rounded border-green-300 text-green-800"
           title="Number of months to include in report, including current month to date (Enter 1 for current month to date stats)"
+          @focus="$event.target.select()"
           required
         />
         <label for="userName" class="text-xl">Your Chess.com Username</label>
@@ -59,6 +61,7 @@
           type="text"
           v-model="user"
           id="userName"
+          @focus="$event.target.select()"
           required
         />
         <br />
@@ -70,6 +73,7 @@
             border-blue-300
             text-blue-800
             hover:text-white hover:bg-blue-800
+            dark:bg-blue-100 dark:hover:bg-blue-800
           "
           @click="buttonData()"
         >
@@ -85,11 +89,19 @@
           <b>Tip: </b>You can show/hide data by clicking the labels in the
           legend
         </p>
-        <canvas id="bothColors"></canvas>
-
-        <h2 class="text-3xl mt-6">Net Wins by color/rating</h2>
-        <canvas id="netWins"></canvas>
       </div>
+      <canvas
+        id="bothColors"
+        :class="Chart.getChart('bothColors') ? '' : 'hidden'"
+      ></canvas>
+
+      <h2 v-if="Chart.getChart('netWins')" class="text-3xl mt-6">
+        Net Wins by color/rating
+      </h2>
+      <canvas
+        id="netWins"
+        :class="Chart.getChart('netWins') ? '' : 'hidden'"
+      ></canvas>
     </div>
     <footer class="bg-purple-100 mt-6 p-6 bottom-0 dark:bg-purple-900">
       Built by TerabyteTiger |
@@ -150,10 +162,19 @@ const toggleTheme = () => {
     themeText.value = "🌙";
     theme.value = "dark";
     document.getElementById("app").className = "dark";
+    if (Chart.getChart("netWins")) {
+      winsChart.update();
+      netChart.update();
+    }
   } else {
     themeText.value = "🌞";
     theme.value = "light";
     document.getElementById("app").className = "light";
+    winsChart.update();
+    if (Chart.getChart("netWins")) {
+      winsChart.update();
+      netChart.update();
+    }
   }
 };
 
@@ -414,7 +435,6 @@ const generateWinsBoth = () => {
     labels: [...labels],
     datasets: [...datasets],
   };
-
   if (Chart.getChart("bothColors")) {
     winsChart.data = data;
     winsChart.update();
@@ -424,12 +444,43 @@ const generateWinsBoth = () => {
       data: data,
       options: {
         barValueSpacing: 5,
+        plugins: {
+          legend: {
+            labels: {
+              color: function () {
+                return theme.value === "light" ? "black" : "#e5e5e5";
+              },
+            },
+          },
+        },
         scales: {
           x: {
             display: true,
             grid: {
               color: function () {
-                return theme.value === "light" ? "#e5e5e5" : "#f3f3f3";
+                return theme.value === "light"
+                  ? "#e5e5e5"
+                  : "hsla(0, 0%, 65.3%, 35%)";
+              },
+            },
+            ticks: {
+              color: function () {
+                return theme.value === "light" ? "black" : "#e5e5e5";
+              },
+            },
+          },
+          y: {
+            display: true,
+            grid: {
+              color: function () {
+                return theme.value === "light"
+                  ? "#e5e5e5"
+                  : "hsla(0, 0%, 65.3%, 35%)";
+              },
+            },
+            ticks: {
+              color: function () {
+                return theme.value === "light" ? "black" : "#e5e5e5";
               },
             },
           },
@@ -567,12 +618,46 @@ const generateNetWins = () => {
         barValueSpacing: 0,
         barPercentage: 1,
         categoryPercentage: 0.9,
-        scales: {
-          yAxes: [
-            {
-              ticks: {},
+        plugins: {
+          legend: {
+            labels: {
+              color: function () {
+                return theme.value === "light" ? "black" : "#e5e5e5";
+              },
             },
-          ],
+          },
+        },
+        scales: {
+          x: {
+            display: true,
+            grid: {
+              color: function () {
+                return theme.value === "light"
+                  ? "#e5e5e5"
+                  : "hsla(0, 0%, 65.3%, 35%)";
+              },
+            },
+            ticks: {
+              color: function () {
+                return theme.value === "light" ? "black" : "#e5e5e5";
+              },
+            },
+          },
+          y: {
+            display: true,
+            grid: {
+              color: function () {
+                return theme.value === "light"
+                  ? "#e5e5e5"
+                  : "hsla(0, 0%, 65.3%, 35%)";
+              },
+            },
+            ticks: {
+              color: function () {
+                return theme.value === "light" ? "black" : "#e5e5e5";
+              },
+            },
+          },
         },
       },
     });
