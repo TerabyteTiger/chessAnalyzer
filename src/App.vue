@@ -48,10 +48,10 @@
           type="number"
           v-model="userMonths"
           step="1"
-          min="1"
+          min="0"
           id="monthsBack"
           class="border-4 p-2 rounded border-green-300 text-green-800"
-          title="Number of months to include in report, including current month to date (Enter 1 for current month to date stats)"
+          title="Number of months to include in report, including current month to date (Enter 0 for current month to date stats)"
           @focus="$event.target.select()"
           required
         />
@@ -75,7 +75,6 @@
             hover:text-white hover:bg-blue-800
             dark:bg-blue-100 dark:hover:bg-blue-800
           "
-          @click="buttonData()"
         >
           {{ loading ? "Loading..." : btnText }}
         </button>
