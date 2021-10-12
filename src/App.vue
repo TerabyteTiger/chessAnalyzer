@@ -95,25 +95,25 @@
       Built by TerabyteTiger |
       <a
         href="https://twitter.com/terabytetiger"
-        class="border-b-4 border-blue-500 border-dashed pb-1"
+        class="border-b-4 border-blue-500 border-dashed md:pb-1"
         >Twitter</a
       >
       |
       <a
         href="https://chess.terabytetiger.com"
-        class="border-b-4 border-green-500 border-dashed pb-1"
+        class="border-b-4 border-green-500 border-dashed md:pb-1"
         >Chess</a
       >
       |
       <a
         href="https://terabytetiger.com"
-        class="border-b-4 border-pink-500 border-dashed pb-1"
+        class="border-b-4 border-pink-500 border-dashed md:pb-1"
         >Development</a
       >
       |
       <a
         href="https://github.com/TerabyteTiger/chessAnalyzer"
-        class="border-b-4 border-indigo-500 border-dashed pb-1"
+        class="border-b-4 border-indigo-500 border-dashed md:pb-1"
         >Contribute</a
       >
       <br />
